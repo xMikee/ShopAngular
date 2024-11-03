@@ -2,6 +2,7 @@ import {Component, inject, signal} from '@angular/core';
 import {Product} from '../../model/products';
 import {JsonPipe} from '@angular/common';
 import {CartService} from '../../core/cart.service';
+import {SettingsService} from '../../core/settings.service';
 
 @Component({
   selector: 'app-home',
@@ -25,19 +26,20 @@ import {CartService} from '../../core/cart.service';
              </div>
              <p>{{product.description}}</p>
              <div class="card-actions justify-end">
-               <button
-                 class="btn btn-primary"
-                 (click) = cartService.addToCart(product)
-               >
-                 Aggiungi al carrello
-               </button>
+               @if(settingsService.isShopEnable()){
+                 <button
+                   class="btn btn-primary"
+                   (click) = cartService.addToCart(product)
+                 >
+                   Aggiungi al carrello
+                 </button>
+               }
              </div>
            </div>
          </div>
        }
     </div>
 
-    <pre>{{cartService.items() | json}}</pre>
   `,
   styles: ``
 })
@@ -45,6 +47,7 @@ export default class HomeComponent {
   products = signal<Product[]>(initialState);
 
   cartService = inject(CartService);
+  settingsService = inject(SettingsService);
 
 }
 
