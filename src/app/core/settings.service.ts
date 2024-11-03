@@ -6,6 +6,8 @@ type Config = {
   enableshop:boolean
 }
 
+type valueOf<T> = T[keyof T];
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +22,7 @@ export class SettingsService {
   color = computed(() => this.config().color)
   isShopEnable = computed(() => this.config().enableshop)
 
-  setConfig(propName:keyof Config,value:any){
+  setConfig(propName:keyof Config,value:valueOf<Config>){
     this.config.update(
       cfg => ({ ...cfg,[propName]:value })
     )
