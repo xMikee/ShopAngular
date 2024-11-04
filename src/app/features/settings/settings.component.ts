@@ -12,11 +12,11 @@ import {PreviewComponent} from './components/preview.component';
   template: `
     <h1 class="text-3xl text-center">Impostazioni App</h1>
 
-    <div class="block">
-      <div class="left">
+    <div class="flex flex-col md:flex-row mx-3">
+      <div class="w-full md:w-1/2 left">
         <app-editor/>
       </div>
-      <div class="right my-6">
+      <div class="w-full md:w-1/2 right my-6">
         <app-preview/>
       </div>
     </div>

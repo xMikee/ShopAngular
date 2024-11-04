@@ -1,10 +1,11 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {SettingsService} from '../../../core/settings.service';
 import {JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'app-editor',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     JsonPipe
   ],
